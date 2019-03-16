@@ -1,0 +1,48 @@
+工作区->(git add)暂存区->(git commit)本地库
+
+初始化仓库：git init
+
+设置签名：
+形式：
+	用户名：tom
+	Email地址：***@qq.com
+作用：区分不同开发人员的身份
+辨析：这里设置的签名和登录远程库(代码托管中心)的账号密码没有任何关联
+命令：
+	项目级别/仓库级别：仅在当前本地库范围内有效
+		git config user.name tom
+		git config user.email ***@qq.com
+		信息保存目录：./.git/config
+	系统用户级别：登录当前操作系统的用户范围 
+		git config --global user.name tom
+		git config --global user.email ***@qq.com
+		信息保存目录：~/.gitconfig
+	级别优先级：就近原则
+	
+状态查看：git status	(查看工作区、暂存区状态)
+添加操作：git add [file name]	(将工作区"新建/修改"添加到暂存区)
+提交操作：git commit -m "提交信息"[file name]	(将暂存区的内容提交到本地库)
+查看历史版本：git log、git log --pretty=oneline、git log --oneline、git reflog(常用)
+	多屏显示控制方式：空格向下翻页、b向上翻页、q退出
+前进后退：基于索引值操作(git reset --hard 索引值)、使用^符号(后退)、使用~符号(前进)
+	reset命令的三个参数对比：
+	--soft	(仅在本地库移动HEAD指针)
+	--mixed	(在本地库和暂存区移动HEAD指针)
+	--hard 	(在本地库、暂存区、工作区移动HEAD指针)
+删除文件：rm [file name]
+工作区和暂存区比较：git diff [file name]
+工作区和本地库比较：git diff HEAD [file name]
+
+查看分支：git branch -v
+创建分支：git branch [分支名]
+切换分支：git checkout [分支名]
+合并分支：1、切换到接受修改的分支；2、git merge [有新内容的分支]
+解决冲突：手动编辑文件后，1、git add [file name]；2、git commit -m "提交信息"	(此时commit一定不能带具体的文件名)
+
+本地库与远程库交互：
+1、创建本地库(git init;git add [file name];git commit -m "提交信息"[file name])
+2、创建远程库(点击右上角的"+"符号，选择"New repository")
+3、git remote add origin 远程库地址	(以后可以直接用别名origin代替远程库地址)
+查看对应的地址及别名：git remote -v
+4、git push origin master	(origin是远程库地址别名，master是本地库分支名)
+
